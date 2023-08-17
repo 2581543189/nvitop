@@ -89,7 +89,7 @@ def metrics():
 def main() -> int:
     thread = threading.Thread(target=updateMetrics)
     thread.start()
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5003)
 
 if __name__ == "__main__":
     sys.exit(main())
