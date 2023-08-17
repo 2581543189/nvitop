@@ -49,6 +49,9 @@ dependencies = [
     "psutil >= 5.6.6",
     "cachetools >= 1.0.1",
     "termcolor >= 1.0.0",
+    "prometheus_client",
+    "flask",
+    "schedule",
     "colorama >= 0.4.0; platform_system == 'Windows'",
     "windows-curses >= 2.2.0; platform_system == 'Windows'",
 ]
@@ -57,6 +60,7 @@ dynamic = ["version", "optional-dependencies"]
 [project.scripts]
 nvitop = "nvitop.cli:main"
 nvisel = "nvitop.select:main"
+nvitop-prometheus = "nvitop.prometheus.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/XuehaiPan/nvitop"
