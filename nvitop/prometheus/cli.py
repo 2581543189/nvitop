@@ -21,10 +21,10 @@ device_count = 0
 def doUpdateMetrics():
     global registry
     newRegistry = CollectorRegistry(auto_describe=False)
-    gpu_pid_sm_util = Gauge("gpu_pid_sm_util", "gpu_pid_sm_util", ["ip_addr", "gpu_index", "pid"], registry=newRegistry)
-    gpu_pid_mem_used = Gauge("gpu_pid_mem_used", "gpu_pid_mem_used", ["ip_addr", "gpu_index", "pid"],
+    gpu_pid_sm_util = Gauge("gpu_pid_sm_util", "gpu_pid_sm_util", ["time_span", "ip_addr", "gpu_index", "pid"], registry=newRegistry)
+    gpu_pid_mem_used = Gauge("gpu_pid_mem_used", "gpu_pid_mem_used", ["time_span", "ip_addr", "gpu_index", "pid"],
                              registry=newRegistry)
-    gpu_pid_mem_total = Gauge("gpu_pid_mem_total", "gpu_pid_mem_total", ["ip_addr", "gpu_index", "pid"],
+    gpu_pid_mem_total = Gauge("gpu_pid_mem_total", "gpu_pid_mem_total", ["time_span", "ip_addr", "gpu_index", "pid"],
                               registry=newRegistry)
 
     mem_total = {}
@@ -43,7 +43,7 @@ def doUpdateMetrics():
         pid = key[1]
         gpu_index = key[0]
         util = sm_util[key]
-        gpu_pid_sm_util.labels(ip_addr, gpu_index, pid).set(util)
+        gpu_pid_sm_util.labels("750ms", ip_addr, gpu_index, pid).set(util)
 
     for key in mem_used:
         pid = key[1]
@@ -52,8 +52,8 @@ def doUpdateMetrics():
             continue
         total = mem_total[gpu_index]
         used = mem_used[key]
-        gpu_pid_mem_total.labels(ip_addr, gpu_index, pid).set(total)
-        gpu_pid_mem_used.labels(ip_addr, gpu_index, pid).set(used)
+        gpu_pid_mem_total.labels("750ms", ip_addr, gpu_index, pid).set(total)
+        gpu_pid_mem_used.labels("750ms", ip_addr, gpu_index, pid).set(used)
     registry = newRegistry
 
 
