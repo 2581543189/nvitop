@@ -7,7 +7,7 @@ import schedule
 import time
 import socket
 from nvitop.api import libnvml
-from nvitop.gui import Device, colored
+from nvitop.api import Device, colored
 import sys
 import logging
 import os
